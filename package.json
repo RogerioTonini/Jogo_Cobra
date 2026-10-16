@@ -1,0 +1,14 @@
+{
+  "name": "jogo-cobra",
+  "version": "1.0.0",
+  "description": "Jogo da cobra clássico em HTML, CSS e JavaScript puros",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node scripts/servidor.js",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
