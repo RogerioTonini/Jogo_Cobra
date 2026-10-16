@@ -1,0 +1,215 @@
+:root {
+  --fundo: #000;
+  --texto: #e8e8e8;
+  --texto-suave: #8a8a8a;
+  --borda: #2a2a2a;
+  --painel: #0d0d0d;
+  --cor-cobra: #7cfc00; /* atualizada pelo app.js a cada nível */
+  --fonte: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --fonte-numeros: ui-monospace, 'Cascadia Mono', Consolas, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  background: var(--fundo);
+  color: var(--texto);
+  font-family: var(--fonte);
+}
+
+.jogo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 24px 16px;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(1.5rem, 5vw, 2.25rem);
+  letter-spacing: 0.04em;
+  color: var(--cor-cobra);
+  transition: color 0.4s;
+}
+
+/* Placar */
+.placar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  width: min(100%, 480px);
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 4px;
+  background: var(--painel);
+  border: 1px solid var(--borda);
+  border-radius: 8px;
+}
+
+.rotulo {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--texto-suave);
+}
+
+.valor {
+  font-family: var(--fonte-numeros);
+  font-size: 1.25rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.valor.destaque {
+  color: var(--cor-cobra);
+  transition: color 0.4s;
+}
+
+/* Tabuleiro */
+.tabuleiro {
+  position: relative;
+  width: min(100%, 480px, 65vh);
+  aspect-ratio: 1;
+  border: 2px solid var(--borda);
+  border-radius: 6px;
+  overflow: hidden;
+  touch-action: none; /* deslizar não rola a página */
+  user-select: none;
+}
+
+#tela {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.sobreposicao {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.78);
+  cursor: pointer;
+}
+
+.sobreposicao[hidden] {
+  display: none;
+}
+
+.sobreposicao .titulo {
+  margin: 0;
+  font-size: clamp(1.4rem, 6vw, 2rem);
+  font-weight: 700;
+  color: var(--cor-cobra);
+}
+
+.sobreposicao .texto {
+  margin: 0;
+  line-height: 1.5;
+  color: var(--texto);
+  white-space: pre-line;
+}
+
+.aviso-nivel {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: clamp(1.6rem, 8vw, 2.6rem);
+  font-weight: 800;
+  color: var(--cor-cobra);
+  text-shadow: 0 0 12px var(--cor-cobra);
+  pointer-events: none;
+  animation: aparecer 1.2s ease-out forwards;
+}
+
+.aviso-nivel[hidden] {
+  display: none;
+}
+
+@keyframes aparecer {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.6);
+  }
+  20% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+  80% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/* Controles e instruções */
+button {
+  font: inherit;
+  padding: 8px 20px;
+  color: var(--texto);
+  background: var(--painel);
+  border: 1px solid var(--borda);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button:hover:not(:disabled) {
+  border-color: var(--cor-cobra);
+}
+
+button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+button:focus-visible,
+.sobreposicao:focus-visible {
+  outline: 2px solid var(--cor-cobra);
+  outline-offset: 2px;
+}
+
+.instrucoes {
+  margin: 0;
+  max-width: 480px;
+  font-size: 0.85rem;
+  line-height: 1.8;
+  text-align: center;
+  color: var(--texto-suave);
+}
+
+kbd {
+  display: inline-block;
+  min-width: 1.6em;
+  margin: 0 1px;
+  padding: 0 4px;
+  font-family: var(--fonte-numeros);
+  font-size: 0.8rem;
+  text-align: center;
+  color: var(--texto);
+  border: 1px solid var(--borda);
+  border-radius: 4px;
+}
+
+@media (max-width: 420px) {
+  .placar {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

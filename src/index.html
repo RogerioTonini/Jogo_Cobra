@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Jogo da Cobra</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <script type="module" src="js/app.js"></script>
+  </head>
+  <body>
+    <main class="jogo">
+      <h1>Jogo da Cobra</h1>
+
+      <section class="placar" aria-label="Placar">
+        <div class="item">
+          <span class="rotulo">Pontos</span>
+          <span id="pontos" class="valor">0</span>
+        </div>
+        <div class="item">
+          <span class="rotulo">Nível</span>
+          <span id="nivel" class="valor destaque">1</span>
+        </div>
+        <div class="item">
+          <span class="rotulo">Objetivos</span>
+          <span id="objetivos" class="valor">0/5</span>
+        </div>
+        <div class="item">
+          <span class="rotulo">Recorde</span>
+          <span id="recorde" class="valor">0</span>
+        </div>
+      </section>
+
+      <div class="tabuleiro" id="tabuleiro">
+        <canvas id="tela" aria-label="Tabuleiro do jogo"></canvas>
+
+        <div id="sobreposicao" class="sobreposicao" role="button" tabindex="0">
+          <p id="titulo-sobreposicao" class="titulo">Pronto?</p>
+          <p id="texto-sobreposicao" class="texto">Pressione Enter ou toque aqui para começar</p>
+        </div>
+
+        <div id="aviso-nivel" class="aviso-nivel" aria-live="polite" hidden></div>
+      </div>
+
+      <div class="controles">
+        <button id="botao-pausa" type="button" disabled>Pausar</button>
+      </div>
+
+      <p class="instrucoes">
+        <kbd>←</kbd><kbd>↑</kbd><kbd>↓</kbd><kbd>→</kbd> ou <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> para mover ·
+        <kbd>Espaço</kbd>/<kbd>P</kbd> pausa · <kbd>Enter</kbd> inicia<br />
+        No celular, deslize o dedo sobre o tabuleiro.
+      </p>
+    </main>
+  </body>
+</html>
